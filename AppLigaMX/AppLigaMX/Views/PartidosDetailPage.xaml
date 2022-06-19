@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:AppLigaMX.Converters"
+             x:Class="AppLigaMX.Views.PartidosDetailPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ImageConverter x:Key="ImageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!-- TOOLBAR -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem/>
+        <ToolbarItem/>
+        <ToolbarItem/>
+        <ToolbarItem Icon="save.png" Command="{Binding SaveCommand}" />
+        <ToolbarItem Icon="delete.png" Command="{Binding DeleteCommand}" />
+        <ToolbarItem Icon="map.png" Command="{Binding MapCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <!-- CONTENIDO DE PÁGINA INICIAL -->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Margin="20"
+                VerticalOptions="StartAndExpand">
+
+                <Grid RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Margin="0,16"
+                        Grid.ColumnSpan="6"
+                        BackgroundColor="#edd02d"/>
+
+                    <Label
+                        Text="REGISTRO DE PARTIDO" 
+                        Grid.Column="0"
+                        TextColor="Black"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="6"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Label 
+                        Text="Equipos que jugarán : " 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        FontSize="15"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White"
+                        />
+
+                    <Entry
+                        Text="{Binding PartidoSelected.Teams}" 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="4"
+                        Grid.Row="1"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        FontSize="14"
+                        Placeholder="Equipo 1 VS Equipo 2"/>
+
+                    <Label
+                        Text="Hora del partido :" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        FontSize="15"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White"/>
+
+                    <Entry
+                        Text="{Binding PartidoSelected.Hour}" 
+                         Grid.Column="2"
+                        Grid.ColumnSpan="4"
+                        Grid.Row="2"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Placeholder="0:00 AM/PM"/>
+
+                    <BoxView 
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Margin="0,16"
+                        Grid.ColumnSpan="6"
+                        BackgroundColor="#edd02d"/>
+
+                    <Label
+                        Text="Registrar una imagen" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.Row="4"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        FontSize="20"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Button
+                        Text="Tomar fotografía"
+                        Command="{Binding TakePictureCommand}" 
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        BorderColor="#edd02d"
+                        BorderWidth="2"
+                        Margin="8,12"
+                        CornerRadius="40"
+                        BackgroundColor="#303030"
+                        FontSize="11"/>
+
+                    <Button
+                        Text="Seleccionar fotografía"
+                        Command="{Binding SelectPictureCommand}" 
+                        Grid.Row="5"
+                        Grid.Column="3"
+                        Grid.ColumnSpan="3"
+                        BorderColor="#edd02d"
+                        BorderWidth="2"
+                        Margin="8,12"
+                        CornerRadius="40"
+                        BackgroundColor="#303030"
+                        FontSize="11"/>
+
+                    <Label
+                        Text="Fotografía" 
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.RowSpan="1"
+                        FontSize="15"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White"/>
+
+                    <Image
+                        Source="{Binding Picture, Converter={StaticResource ImageConverter}}"
+                        WidthRequest="10"
+                        FlexLayout.Shrink="10"
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.RowSpan="5"/>
+
+                    <BoxView 
+                        Grid.Column="0"
+                        Grid.Row="10"
+                        Margin="0,16"
+                        Grid.ColumnSpan="6"
+                        BackgroundColor="#edd02d"/>
+
+                    <Label
+                        Text="Registrar Ubicación del estadio" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.Row="10"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        FontSize="17"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Button
+                        Text="Obtener ubicación"
+                        Command="{Binding GetLocationCommand}" 
+                        Grid.Row="11"
+                        Grid.ColumnSpan="6"
+                        BorderColor="#edd02d"
+                        BorderWidth="2"
+                        Margin="50,14"
+                        CornerRadius="40"
+                        BackgroundColor="#303030"/>
+
+                    <Entry
+                        Text="{Binding Latitud}" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.Row="12"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Placeholder="Latitud"/>
+
+                    <Entry
+                        Text="{Binding Longitud}" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Grid.Row="13"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Placeholder="Longitud"/>
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

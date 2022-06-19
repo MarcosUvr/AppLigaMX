@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppLigaMX.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ColorAmarillo">#edd02d</Color>
+            <Color x:Key="ColorNegro">#242424</Color>
+            <Color x:Key="ColorAzul">#04316a</Color>
+            <Color x:Key="ColorBlanco">White</Color>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
