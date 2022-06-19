@@ -35,15 +35,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -168,60 +160,13 @@
                         TextColor="White"/>
 
                     <Image
-                        Source="{Binding Picture, Converter={StaticResource ImageConverter}}"
+                        Source="{Binding PartidoPicture, Converter={StaticResource ImageConverter}}"
                         WidthRequest="10"
                         FlexLayout.Shrink="10"
                         Grid.Row="6"
                         Grid.Column="0"
                         Grid.ColumnSpan="6"
                         Grid.RowSpan="5"/>
-
-                    <BoxView 
-                        Grid.Column="0"
-                        Grid.Row="10"
-                        Margin="0,16"
-                        Grid.ColumnSpan="6"
-                        BackgroundColor="#edd02d"/>
-
-                    <Label
-                        Text="Registrar Ubicación del estadio" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="6"
-                        Grid.Row="10"
-                        FontAttributes="Bold"
-                        TextColor="Black"
-                        FontSize="17"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="Center"/>
-
-                    <Button
-                        Text="Obtener ubicación"
-                        Command="{Binding GetLocationCommand}" 
-                        Grid.Row="11"
-                        Grid.ColumnSpan="6"
-                        BorderColor="#edd02d"
-                        BorderWidth="2"
-                        Margin="50,14"
-                        CornerRadius="40"
-                        BackgroundColor="#303030"/>
-
-                    <Entry
-                        Text="{Binding Latitud}" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="6"
-                        Grid.Row="12"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="Center"
-                        Placeholder="Latitud"/>
-
-                    <Entry
-                        Text="{Binding Longitud}" 
-                        Grid.Column="0"
-                        Grid.ColumnSpan="6"
-                        Grid.Row="13"
-                        VerticalTextAlignment="Center"
-                        HorizontalTextAlignment="Center"
-                        Placeholder="Longitud"/>
 
                 </Grid>
             </StackLayout>

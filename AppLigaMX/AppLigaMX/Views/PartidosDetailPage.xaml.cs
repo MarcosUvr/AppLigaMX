@@ -1,5 +1,6 @@
 ﻿using AppLigaMX.Models;
 using AppLigaMX.ViewModels;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +13,11 @@ namespace AppLigaMX.Views
         {
             InitializeComponent();
 
+
             BindingContext = new PartidosDetailViewModel(); //Se determina donde se hace el binding
+            PartidosDetailViewModel mapas = new PartidosDetailViewModel();
+            mapas.GetLocationCommand.Execute(mapas);
+            Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
         }
 
         public PartidosDetailPage(PartidoModel partidoSelected)

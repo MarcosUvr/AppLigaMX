@@ -44,5 +44,7 @@ namespace AppLigaMX.Views
             HoraLabel.Text = partido.Hour;
 
         }
+
+        
     }
 }
