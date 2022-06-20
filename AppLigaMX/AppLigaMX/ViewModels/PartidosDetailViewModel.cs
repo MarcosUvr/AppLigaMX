@@ -63,11 +63,11 @@ namespace AppLigaMX.ViewModels
             set => SetProperty(ref _PartidoPicture, value);
         }
 
-        private string _PartidoHours;
-        public string PartidoHours
+        private string _PartidoHour;
+        public string PartidoHour
         {
-            get => _PartidoHours;
-            set => SetProperty(ref _PartidoHours, value);
+            get => _PartidoHour;
+            set => SetProperty(ref _PartidoHour, value);
         }
 
         private double _Latitud;
@@ -113,18 +113,18 @@ namespace AppLigaMX.ViewModels
                     ID = PartidoID,
                     Teams = PartidoTeams,
                     Picture64 = PartidoPicture,
-                    Hour = PartidoHours
+                    Hour = PartidoHour
                 };
 
                 if (model.ID == 0)
                 {
                     // Crear un nuevo producto
-                    response = await new ApiService().PostDataAsync("Partido", model);
+                    response = await new ApiService().PostDataAsync("partido", model);
                 }
                 else
                 {
                     // Actualizar un producto existente
-                    response = await new ApiService().PutDataAsync("Partido", model);
+                    response = await new ApiService().PutDataAsync("partido", model);
                 }
 
                 // Si no fue satisfactorio enviamos un mensaje y terminamos el método

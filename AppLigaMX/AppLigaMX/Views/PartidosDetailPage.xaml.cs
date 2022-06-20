@@ -25,6 +25,10 @@ namespace AppLigaMX.Views
             InitializeComponent();
 
             BindingContext = new PartidosDetailViewModel(partidoSelected); //Se determina donde se hace el binding
+            PartidosDetailViewModel mapas = new PartidosDetailViewModel();
+            mapas.GetLocationCommand.Execute(mapas);
+            Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
+
         }
     }
 }

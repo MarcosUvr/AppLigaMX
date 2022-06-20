@@ -125,15 +125,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "INSERT INTO partido " +
-                                  "(Teams, " +
-                                  "Picture, " +
-                                  "Hour, " +
-                                  "VALUES " +
-                                  "(@Teams, " +
-                                  "@Picture, " +
-                                  "@Hour, " //+
-                                  /*"SELECT LAST_INSERT_ID();"*/;
+                    string tsql = "INSERT INTO Partido " +"(Teams, " +"Picture, " +"Hour) " +"VALUES " +"(@Teams, " +"@Picture, " +"@Hour); " + "SELECT LAST_INSERT_ID();"; 
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
