@@ -59,7 +59,7 @@ namespace AppLigaMX.ViewModels
         {
             IsBusy = true;
             ListPartidos = null;
-            ApiResponse response = await new ApiService().GetDataAsync("partido");
+            ApiResponse response = await new ApiService().GetDataAsync("Partido");
             if (response == null || !response.IsSuccess)
             {
                 // No hubo una respuesta exitosa

@@ -10,14 +10,13 @@ namespace ApiPartidos.Models
         //Propiedades
         public int ID { get; set; }
         public string Teams { get; set; }
-        public string Picture64 { get; set; }
+        public string Picture { get; set; }
         public string Hour { get; set; }
 
         public PartidoModel()
         {
-            ConnectionString = String.Empty;
             Teams = String.Empty;
-            Picture64 = String.Empty;
+            Picture = String.Empty;
             Hour = String.Empty;
         }
 
@@ -25,7 +24,7 @@ namespace ApiPartidos.Models
         {
             ConnectionString = connectionString;
             Teams = String.Empty;
-            Picture64 = String.Empty;
+            Picture = String.Empty;
             Hour = String.Empty;
         }
 
@@ -38,7 +37,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "SELECT * FROM partido ";
+                    string tsql = "SELECT * FROM Partido ";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -49,7 +48,7 @@ namespace ApiPartidos.Models
                                 {
                                     ID = (int)reader["IDPartido"],
                                     Teams = reader["Teams"].ToString(),
-                                    Picture64 = reader["Picture64"].ToString(),
+                                    Picture = reader["Picture64"].ToString(),
                                     Hour = reader["Hour"].ToString()    
                                 });
                             }
@@ -128,18 +127,18 @@ namespace ApiPartidos.Models
                     con.Open();
                     string tsql = "INSERT INTO partido " +
                                   "(Teams, " +
-                                  "Picture64, " +
+                                  "Picture, " +
                                   "Hour, " +
                                   "VALUES " +
                                   "(@Teams, " +
-                                  "@Picture64, " +
+                                  "@Picture, " +
                                   "@Hour, " //+
                                   /*"SELECT LAST_INSERT_ID();"*/;
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.AddWithValue("@Teams", model.Teams);
-                        cmd.Parameters.AddWithValue("@Picture64", model.Picture64);
+                        cmd.Parameters.AddWithValue("@Picture", model.Picture);
                         cmd.Parameters.AddWithValue("@Hour", model.Hour);
                         newID = cmd.ExecuteScalar();
                         if (newID != null && newID.ToString().Length > 0)
@@ -179,13 +178,13 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "UPDATE partido SET Teams = @Teams, Picture64 = @Picture64, Hour = @Hour" +
+                    string tsql = "UPDATE partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour" +
                                   "WHERE ID = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.AddWithValue("@Teams", model.Teams);
-                        cmd.Parameters.AddWithValue("@Picture64", model.Picture64);
+                        cmd.Parameters.AddWithValue("@Picture", model.Picture);
                         cmd.Parameters.AddWithValue("@Hour", model.Hour);
                         cmd.Parameters.AddWithValue("@ID", model.ID);
                         cmd.ExecuteNonQuery();

@@ -33,7 +33,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = true,
-                    Message = "El partido se eliminó exitosamente",
+                    Message = "El partido se obtuvo exitosamente",
                     Result = new PartidoModel().Get(id)
                 };
             }
@@ -42,7 +42,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = false,
-                    Message = $"Se generó un error al eliminar el partido: {ex.Message}",
+                    Message = $"Se generó un error al buscar el partido: {ex.Message}",
                     Result = null
                 };
             }
@@ -57,7 +57,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = true,
-                    Message = "El partido se eliminó exitosamente",
+                    Message = "El partido se creó exitosamente",
                     Result = new PartidoModel(Configuration.GetConnectionString(ConnectionString)).Post(model)
                 };
             }
@@ -66,7 +66,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = false,
-                    Message = $"Se generó un error al eliminar el partido: {ex.Message}",
+                    Message = $"Se generó un error al crear el partido: {ex.Message}",
                     Result = null
                 };
             }
@@ -81,7 +81,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = true,
-                    Message = "El partido se eliminó exitosamente",
+                    Message = "El partido se ha modificado exitosamente",
                     Result = new PartidoModel(Configuration.GetConnectionString(ConnectionString)).Update(model)
                 };
             }
@@ -90,7 +90,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = false,
-                    Message = $"Se generó un error al eliminar el partido: {ex.Message}",
+                    Message = $"Se generó un error al modificar el partido: {ex.Message}",
                     Result = null
                 };
             }
