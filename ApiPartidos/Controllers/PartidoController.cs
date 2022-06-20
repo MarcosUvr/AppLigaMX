@@ -58,7 +58,7 @@ namespace ApiPartidos.Controllers
                 {
                     IsSuccess = true,
                     Message = "El partido se creó exitosamente",
-                    Result = new PartidoModel(Configuration.GetConnectionString(ConnectionString)).Post(model)
+                    Result = new PartidoModel().Post(model)
                 };
             }
             catch (Exception ex)
@@ -82,7 +82,7 @@ namespace ApiPartidos.Controllers
                 {
                     IsSuccess = true,
                     Message = "El partido se ha modificado exitosamente",
-                    Result = new PartidoModel(Configuration.GetConnectionString(ConnectionString)).Update(model)
+                    Result = new PartidoModel().Update(model)
                 };
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace ApiPartidos.Controllers
                 {
                     IsSuccess = true,
                     Message = "El partido se eliminó exitosamente",
-                    Result = new PartidoModel (Configuration.GetConnectionString(ConnectionString)).Delete(id)
+                    Result = new PartidoModel ().Delete(id)
                 };
             }
             catch (Exception ex)

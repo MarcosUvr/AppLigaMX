@@ -48,7 +48,7 @@ namespace ApiPartidos.Models
                                 {
                                     ID = (int)reader["IDPartido"],
                                     Teams = reader["Teams"].ToString(),
-                                    Picture = reader["Picture64"].ToString(),
+                                    Picture = reader["Picture"].ToString(),
                                     Hour = reader["Hour"].ToString()    
                                 });
                             }
