@@ -15,20 +15,20 @@ namespace ApiPartidos.Models
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 
-        public PartidoModel()
-        {
-            Teams = String.Empty;
-            Picture = String.Empty;
-            Hour = String.Empty;
-        }
+        //public PartidoModel()
+        //{
+        //    Teams = String.Empty;
+        //    Picture = String.Empty;
+        //    Hour = String.Empty;
+        //}
 
-        public PartidoModel(string connectionString)
-        {
-            ConnectionString = connectionString;
-            Teams = String.Empty;
-            Picture = String.Empty;
-            Hour = String.Empty;
-        }
+        //public PartidoModel(string connectionString)
+        //{
+        //    ConnectionString = connectionString;
+        //    Teams = String.Empty;
+        //    Picture = String.Empty;
+        //    Hour = String.Empty;
+        //}
 
         //Métodos
         public ApiResponse GetAll()
@@ -46,7 +46,7 @@ namespace ApiPartidos.Models
                         {
                             while (reader.Read())
                             {
-                                list.Add(new PartidoModel()
+                                list.Add(new PartidoModel
                                 {
                                     ID = (int)reader["IDPartido"],
                                     Teams = reader["Teams"].ToString(),
@@ -76,7 +76,7 @@ namespace ApiPartidos.Models
 
         }
 
-        public PartidoModel Get(int id)
+        public ApiResponse Get(int id)
         {
             // Memoria
             //return Products.Find(p => p.ID == id);
@@ -107,15 +107,25 @@ namespace ApiPartidos.Models
                         }
                     }
                 }
-                return model;
+                return new ApiResponse
+                {
+                    IsSuccess = true,
+                    Message = "Los partidos fueron obtenidos correctamente",
+                    Result = model
+                };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return new ApiResponse
+                {
+                    IsSuccess = false,
+                    Message = $"Se generó un error al obtener los partidos: {ex.Message}",
+                    Result = null
+                };
             }
         }
 
-        public int Post(PartidoModel model)
+        public ApiResponse Post(PartidoModel model)
         {
             // Memoria
             /*model.ID = Products.Count + 1;
@@ -126,32 +136,44 @@ namespace ApiPartidos.Models
             try
             {
                 object newID;
-                string tsql = "INSERT INTO Partido (IDPartido, Teams, Hour, Picture, Latitud, Longitud) " +
-                    "VALUES  (@ID, @Teams, @Hour, @Picture, @Latitud, @Longitud);"; 
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
+                    string tsql = "INSERT INTO Partido (Teams, Hour, Picture, Latitud, Longitud) " +
+                        "VALUES  (@@Teams, @Hour, @Picture, @Latitud, @Longitud);"; 
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
-                        cmd.Parameters.AddWithValue("@ID", model.ID);
+                        cmd.CommandType = System.Data.CommandType.Text;
                         cmd.Parameters.AddWithValue("@Teams", model.Teams);
                         cmd.Parameters.AddWithValue("@Hour", model.Hour);
                         cmd.Parameters.AddWithValue("@Picture", model.Picture);
                         cmd.Parameters.AddWithValue("@Latitud", model.Latitud);
                         cmd.Parameters.AddWithValue("@Longitud", model.Longitud);
-                        cmd.ExecuteNonQuery();
-                        //newID = cmd.ExecuteScalar();
+
+                        cmd.ExecuteScalar();
+                        // cmd.ExecuteNonQuery();
                         //if (newID != null && newID.ToString().Length > 0)
                         //{
+                        //    cmd.Parameters.AddWithValue("@ID", newID);
                         //    return int.Parse(newID.ToString());
                         //}
                     }
                 }
-                return 0;
+                return new ApiResponse
+                {
+                    IsSuccess = true,
+                    Message = "Los partidos fueron obtenidos correctamente",
+                    Result = model
+                };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return new ApiResponse
+                {
+                    IsSuccess = false,
+                    Message = $"Se generó un error al obtener los partidos: {ex.Message}",
+                    Result = null
+                };
             }
         }
 
@@ -209,7 +231,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "DELETE FROM partido WHERE ID = @ID";
+                    string tsql = "DELETE FROM Partido WHERE IDProducto = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
