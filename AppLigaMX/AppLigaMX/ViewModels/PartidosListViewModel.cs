@@ -18,14 +18,14 @@ namespace AppLigaMX.ViewModels
         private Command _NewCommand;
         public Command NewCommand => _NewCommand ?? (_NewCommand = new Command(NewAction));
 
-        //PROPIEDADES
+        //PROPIEDADESSe generó un error al crear el partido
         private List<PartidoModel> _ListPartidos;
         public List<PartidoModel> ListPartidos
         {
             get => _ListPartidos;
             set => SetProperty(ref _ListPartidos, value);
         }
-
+        
         private PartidoModel _PartidoSelected;
         public PartidoModel PartidoSelected
         {

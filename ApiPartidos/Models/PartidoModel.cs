@@ -98,7 +98,7 @@ namespace ApiPartidos.Models
                             {
                                 model = new PartidoModel()
                                 {
-                                    ID = int.Parse(reader["ID"].ToString()),
+                                    ID = int.Parse(reader["IDPartido"].ToString()),
                                     Teams = reader["Teams"].ToString(),
                                     Picture = reader["Picture"].ToString(),
                                     Hour = reader["Hour"].ToString()
@@ -140,7 +140,7 @@ namespace ApiPartidos.Models
                 {
                     con.Open();
                     string tsql = "INSERT INTO Partido (Teams, Hour, Picture, Latitud, Longitud) " +
-                        "VALUES  (@@Teams, @Hour, @Picture, @Latitud, @Longitud);"; 
+                        "VALUES  (@Teams, @Hour, @Picture, @Latitud, @Longitud);"; 
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
@@ -200,8 +200,8 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "UPDATE Partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour" +
-                                  "WHERE ID = @ID";
+                    string tsql = "UPDATE Partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour " +
+                                  "WHERE IDPartido = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
@@ -231,7 +231,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "DELETE FROM Partido WHERE IDProducto = @ID";
+                    string tsql = "DELETE * FROM Partido WHERE IDPartido = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
