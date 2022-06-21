@@ -44,6 +44,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Label
+                        TextColor="White"
                         Grid.Column="0"
                         VerticalTextAlignment="Center"
                         HorizontalOptions="CenterAndExpand" 
@@ -51,6 +52,7 @@
                         FontAttributes="Bold"
                         FontSize="12"/>
                     <Label
+                        TextColor="White"
                         Grid.Column="1"
                         VerticalTextAlignment="Center"
                         HorizontalOptions="CenterAndExpand"
@@ -58,6 +60,7 @@
                         FontAttributes="Bold"
                         FontSize="12"/>
                     <Label
+                        TextColor="White"
                         Grid.Column="2"
                         VerticalTextAlignment="Center"
                         HorizontalOptions="CenterAndExpand"
@@ -90,12 +93,14 @@
                                 HorizontalOptions="Center" />
 
                             <Label
+                                TextColor="White"
                                 Text="{Binding Teams}"
                                 Grid.Column="1"
                                 VerticalTextAlignment="Center"
                                 HorizontalOptions="CenterAndExpand" />
 
                             <Label
+                                TextColor="White"
                                 Text="{Binding Hour}"
                                 Grid.Column="2"
                                 VerticalTextAlignment="Center"

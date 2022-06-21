@@ -8,6 +8,9 @@
             <Color x:Key="ColorNegro">#242424</Color>
             <Color x:Key="ColorAzul">#04316a</Color>
             <Color x:Key="ColorBlanco">White</Color>
+            <Style ApplyToDerivedTypes="True" TargetType="Page">
+                <Setter Property="BackgroundImage" Value="fondo.jpg" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -66,7 +66,7 @@ namespace ApiPartidos.Controllers
                 return new ApiResponse
                 {
                     IsSuccess = false,
-                    Message = $"Se generó un error al crear el partido: {ex.Message}",
+                    Message = $"a: {ex.Message}",
                     Result = null
                 };
             }
