@@ -15,9 +15,9 @@ namespace AppLigaMX.Views
 
 
             BindingContext = new PartidosDetailViewModel(); //Se determina donde se hace el binding
-            PartidosDetailViewModel mapas = new PartidosDetailViewModel();
-            mapas.GetLocationCommand.Execute(mapas);
-            Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
+            //PartidosDetailViewModel mapas = new PartidosDetailViewModel();
+            //mapas.GetLocationCommand.Execute(mapas);
+            //Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
         }
 
         public PartidosDetailPage(PartidoModel partidoSelected)
@@ -25,9 +25,9 @@ namespace AppLigaMX.Views
             InitializeComponent();
 
             BindingContext = new PartidosDetailViewModel(partidoSelected); //Se determina donde se hace el binding
-            PartidosDetailViewModel mapas = new PartidosDetailViewModel();
-            mapas.GetLocationCommand.Execute(mapas);
-            Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
+            //PartidosDetailViewModel mapas = new PartidosDetailViewModel();
+            //mapas.GetLocationCommand.Execute(mapas);
+            //Console.WriteLine(mapas.Latitud + " " + mapas.Longitud);
 
         }
     }

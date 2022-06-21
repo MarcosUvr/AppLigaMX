@@ -12,6 +12,8 @@ namespace ApiPartidos.Models
         public string Teams { get; set; }
         public string Picture { get; set; }
         public string Hour { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
 
         public PartidoModel()
         {
@@ -86,7 +88,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "SELECT * FROM partido WHERE ID = @ID";
+                    string tsql = "SELECT * FROM Partido WHERE IDPartido = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.Parameters.AddWithValue("@ID", id);
@@ -97,7 +99,9 @@ namespace ApiPartidos.Models
                                 model = new PartidoModel()
                                 {
                                     ID = int.Parse(reader["ID"].ToString()),
-
+                                    Teams = reader["Teams"].ToString(),
+                                    Picture = reader["Picture"].ToString(),
+                                    Hour = reader["Hour"].ToString()
                                 };
                             }
                         }
@@ -122,21 +126,25 @@ namespace ApiPartidos.Models
             try
             {
                 object newID;
+                string tsql = "INSERT INTO Partido (IDPartido, Teams, Hour, Picture, Latitud, Longitud) " +
+                    "VALUES  (@ID, @Teams, @Hour, @Picture, @Latitud, @Longitud);"; 
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "INSERT INTO Partido " +"(Teams, " +"Picture, " +"Hour) " +"VALUES " +"(@Teams, " +"@Picture, " +"@Hour); " + "SELECT LAST_INSERT_ID();"; 
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
-                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.AddWithValue("@ID", model.ID);
                         cmd.Parameters.AddWithValue("@Teams", model.Teams);
-                        cmd.Parameters.AddWithValue("@Picture", model.Picture);
                         cmd.Parameters.AddWithValue("@Hour", model.Hour);
-                        newID = cmd.ExecuteScalar();
-                        if (newID != null && newID.ToString().Length > 0)
-                        {
-                            return int.Parse(newID.ToString());
-                        }
+                        cmd.Parameters.AddWithValue("@Picture", model.Picture);
+                        cmd.Parameters.AddWithValue("@Latitud", model.Latitud);
+                        cmd.Parameters.AddWithValue("@Longitud", model.Longitud);
+                        cmd.ExecuteNonQuery();
+                        //newID = cmd.ExecuteScalar();
+                        //if (newID != null && newID.ToString().Length > 0)
+                        //{
+                        //    return int.Parse(newID.ToString());
+                        //}
                     }
                 }
                 return 0;
@@ -170,7 +178,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "UPDATE partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour" +
+                    string tsql = "UPDATE Partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour" +
                                   "WHERE ID = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {

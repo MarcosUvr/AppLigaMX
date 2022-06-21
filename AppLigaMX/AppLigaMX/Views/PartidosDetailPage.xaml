@@ -76,7 +76,7 @@
                         />
 
                     <Entry
-                        Text="{Binding PartidoTeams}" 
+                        Text="{Binding PartidoSelected.Teams}" 
                         Grid.Column="2"
                         Grid.ColumnSpan="4"
                         Grid.Row="1"
@@ -96,7 +96,7 @@
                         TextColor="White"/>
 
                     <Entry
-                        Text="{Binding PartidoHour}" 
+                        Text="{Binding PartidoSelected.Hour}" 
                          Grid.Column="2"
                         Grid.ColumnSpan="4"
                         Grid.Row="2"

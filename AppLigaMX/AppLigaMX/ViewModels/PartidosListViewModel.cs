@@ -39,6 +39,13 @@ namespace AppLigaMX.ViewModels
             }
         }
 
+        private string _PartidoPicture;
+        public string PartidoPicture
+        {
+            get => _PartidoPicture;
+            set => SetProperty(ref _PartidoPicture, value);
+        }
+
         //MÉTODOS CONSTRUCTORES
         public PartidosListViewModel()
         {

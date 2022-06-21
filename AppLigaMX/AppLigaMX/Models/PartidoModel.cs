@@ -6,5 +6,7 @@
         public string Teams { get; set; }
         public string Picture64 { get; set; }
         public string Hour { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
     }
 }

@@ -85,7 +85,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image
-                                Source="{Binding Fotografia64, Converter={StaticResource ImageConverter}}"
+                                Source="{Binding PartidoPicture, Converter={StaticResource ImageConverter}}"
                                 Grid.Column="0"
                                 HorizontalOptions="Center" />
 

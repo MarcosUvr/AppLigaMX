@@ -12,6 +12,10 @@ namespace AppLigaMX.ViewModels
 {
     public class PartidosDetailViewModel : BaseViewModel
     {
+        // VARIABLES GLOBALES 
+        public readonly PartidosListViewModel ListViewModel;
+        static PartidosDetailViewModel instance = new PartidosDetailViewModel();
+
         //COMANDOS
         private Command _CancelCommand;
         public Command CancelCommand => _CancelCommand ?? (_CancelCommand = new Command(CancelAction));
@@ -89,6 +93,7 @@ namespace AppLigaMX.ViewModels
         {
             //Si se hace un nuevo registro de un partido, se instancía
             PartidoSelected = new PartidoModel();
+            
         }
 
         public PartidosDetailViewModel(PartidoModel partidoSelected)
@@ -96,11 +101,23 @@ namespace AppLigaMX.ViewModels
             //Se carga el registro del partido si ya existe
             PartidoSelected = partidoSelected;
             PartidoPicture = partidoSelected.Picture64;
+            
         }
+
+        //public PartidosDetailViewModel(PartidosListViewModel partidoListViewModel, PartidoModel partido)
+        //{
+        //    this.ListViewModel = partidoListViewModel;
+
+        //    PartidoID = partido.ID;
+        //    PartidoTeams = partido.Teams;
+        //    PartidoPicture = partido.Picture64;
+        //    PartidoHour = partido.Hour;
+        //}
 
         //MÉTODOS
         private async void SaveAction()
         {
+            GetLocationCommand.Execute(instance);
             ApiResponse response;
             try
             {
@@ -111,20 +128,22 @@ namespace AppLigaMX.ViewModels
                 PartidoModel model = new PartidoModel
                 {
                     ID = PartidoID,
-                    Teams = PartidoTeams,
+                    Teams = PartidoSelected.Teams,
                     Picture64 = PartidoPicture,
-                    Hour = PartidoHour
+                    Hour = PartidoSelected.Hour,
+                    Latitud = instance.Latitud,
+                    Longitud = instance.Longitud
                 };
 
                 if (model.ID == 0)
                 {
                     // Crear un nuevo producto
-                    response = await new ApiService().PostDataAsync("partido", model);
+                    response = await new ApiService().PostDataAsync("Partido", model);
                 }
                 else
                 {
                     // Actualizar un producto existente
-                    response = await new ApiService().PutDataAsync("partido", model);
+                    response = await new ApiService().PutDataAsync("Partido", model);
                 }
 
                 // Si no fue satisfactorio enviamos un mensaje y terminamos el método
