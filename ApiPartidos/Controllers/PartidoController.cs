@@ -73,28 +73,12 @@ namespace ApiPartidos.Controllers
         }
 
         // PUT api/<PartidoController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ApiResponse Put([FromBody] PartidoModel model)
         {
-            try
-            {
-                return new ApiResponse
-                {
-                    IsSuccess = true,
-                    Message = "El partido se ha modificado exitosamente",
-                    Result = new PartidoModel().Put(model)
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ApiResponse
-                {
-                    IsSuccess = false,
-                    Message = $"Se generó un error al modificar el partido: {ex.Message}",
-                    Result = null
-                };
-            }
+            return new PartidoModel().Put(model);
         }
+
 
         // DELETE api/<PartidoController>/5
         [HttpDelete("{id}")]

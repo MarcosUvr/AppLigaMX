@@ -101,7 +101,6 @@ namespace AppLigaMX.ViewModels
             //Se carga el registro del partido si ya existe
             PartidoSelected = partidoSelected;
             PartidoPicture = partidoSelected.Picture;
-            
         }
 
         //public PartidosDetailViewModel(PartidosListViewModel partidoListViewModel, PartidoModel partido)
