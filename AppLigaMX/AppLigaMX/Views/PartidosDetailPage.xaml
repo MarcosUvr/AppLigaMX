@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converters="clr-namespace:AppLigaMX.Converters"
+             xmlns:renders="clr-namespace:AppLigaMX.Renders"
              x:Class="AppLigaMX.Views.PartidosDetailPage">
 
     <ContentPage.Resources>
@@ -77,7 +78,7 @@
                         TextColor="White"
                         />
 
-                    <Entry
+                    <renders:MyEntry
                         Text="{Binding PartidoSelected.Teams}" 
                         Grid.Column="2"
                         Grid.ColumnSpan="4"
@@ -97,7 +98,7 @@
                         HorizontalTextAlignment="Center"
                         TextColor="White"/>
 
-                    <Entry
+                    <renders:MyEntry
                         Text="{Binding PartidoSelected.Hour}" 
                          Grid.Column="2"
                         Grid.ColumnSpan="4"

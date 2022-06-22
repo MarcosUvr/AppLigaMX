@@ -295,8 +295,8 @@ namespace AppLigaMX.ViewModels
             //Se abre la pestaña donde se muestra el mapa
             try
             {
-                var partido = new PartidoModel();
                 var location = await Geolocation.GetLocationAsync(); //GetLastKnownLocationAsync();
+                //var partido = new PartidoModel();
                 if (location != null)
                 {
 

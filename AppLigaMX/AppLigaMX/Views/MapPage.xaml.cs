@@ -17,6 +17,10 @@ namespace AppLigaMX.Views
         public MapPage(Location location, PartidoModel partido)
         {
             InitializeComponent();
+            partido.Latitud = location.Latitude;
+            partido.Longitud = location.Longitude;
+
+            MapControl.Partido = partido;
 
             MapControl.MoveToRegion(
                MapSpan.FromCenterAndRadius(
@@ -25,16 +29,16 @@ namespace AppLigaMX.Views
                        location.Longitude
                        ), Distance.FromMiles(.5)
                    )
-               ); ;
+               ); 
 
             MapControl.Pins.Add(
                 new Pin
                 {
                     Type = PinType.Place,
-                    Label = partido.Hour,
+                    Label = partido.Teams,
                     Position = new Position(
-                        location.Latitude,
-                        location.Longitude
+                        partido.Latitud,
+                        partido.Longitud
                         )
                 }
              );

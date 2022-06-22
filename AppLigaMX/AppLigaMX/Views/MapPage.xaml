@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:renders="clr-namespace:AppLigaMX.Renders"
              x:Class="AppLigaMX.Views.MapPage">
     <ContentPage.Content>
         <Grid>
@@ -10,7 +11,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1"/>
             </Grid.RowDefinitions>
-            <maps:Map 
+            <renders:MyMap 
                 x:Name="MapControl"
                 Grid.RowSpan="4"
                 MapType="Hybrid"/>
