@@ -103,16 +103,6 @@ namespace AppLigaMX.ViewModels
             PartidoPicture = partidoSelected.Picture;
         }
 
-        //public PartidosDetailViewModel(PartidosListViewModel partidoListViewModel, PartidoModel partido)
-        //{
-        //    this.ListViewModel = partidoListViewModel;
-
-        //    PartidoID = partido.ID;
-        //    PartidoTeams = partido.Teams;
-        //    PartidoPicture = partido.Picture64;
-        //    PartidoHour = partido.Hour;
-        //}
-
         //MÉTODOS
         private async void SaveAction()
         {

@@ -15,21 +15,6 @@ namespace ApiPartidos.Models
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 
-        //public PartidoModel()
-        //{
-        //    Teams = String.Empty;
-        //    Picture = String.Empty;
-        //    Hour = String.Empty;
-        //}
-
-        //public PartidoModel(string connectionString)
-        //{
-        //    ConnectionString = connectionString;
-        //    Teams = String.Empty;
-        //    Picture = String.Empty;
-        //    Hour = String.Empty;
-        //}
-
         //Métodos
         public ApiResponse GetAll()
         {
@@ -80,10 +65,7 @@ namespace ApiPartidos.Models
 
         public ApiResponse Get(int id)
         {
-            // Memoria
-            //return Products.Find(p => p.ID == id);
-
-            // MySQL
+            // SQL
             PartidoModel model = new PartidoModel();
             try
             {
@@ -211,10 +193,8 @@ namespace ApiPartidos.Models
 
         public ApiResponse Delete(int id)
         {
-            // Memoria
-            //Products.Remove(Get(id));
 
-            // MySQL
+            // SQL
             try
             {
                 using (SqlConnection con = new SqlConnection(ConnectionString))
