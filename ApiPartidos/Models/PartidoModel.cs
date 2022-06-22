@@ -177,7 +177,7 @@ namespace ApiPartidos.Models
             }
         }
 
-        public ApiResponse Update(PartidoModel model)
+        public ApiResponse Put(PartidoModel model)
         {
             // Memoria
             /*foreach(ProductModel item in Products)
@@ -230,7 +230,7 @@ namespace ApiPartidos.Models
             }
         }
 
-        public int Delete(int id)
+        public ApiResponse Delete(int id)
         {
             // Memoria
             //Products.Remove(Get(id));
@@ -249,11 +249,21 @@ namespace ApiPartidos.Models
                         cmd.ExecuteNonQuery();
                     }
                 }
-                return id;
+                return new ApiResponse
+                {
+                    IsSuccess = true,
+                    Message = "El partido se eliminó correctamente",
+                    Result = id
+                };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return new ApiResponse
+                {
+                    IsSuccess = false,
+                    Message = $"Se generó un error al borrar el partido: {ex.Message}",
+                    Result = null
+                };
             }
         }
     }

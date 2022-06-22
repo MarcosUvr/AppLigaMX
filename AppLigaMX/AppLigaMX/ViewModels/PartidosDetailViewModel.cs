@@ -129,10 +129,10 @@ namespace AppLigaMX.ViewModels
                 {
                     ID = PartidoSelected.ID,
                     Teams = PartidoSelected.Teams,
-                    Picture = PartidoSelected.Picture,
+                    Picture = PartidoPicture,
                     Hour = PartidoSelected.Hour,
-                    //Latitud = latitud,
-                    //Longitud = longitud
+                    Latitud = PartidoSelected.Latitud,
+                    Longitud = PartidoSelected.Longitud
                 };
 
                 if (model.ID == 0)
@@ -163,7 +163,7 @@ namespace AppLigaMX.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("AppProducts", $"Se generó un error al guardar el producto: {ex.Message}", "Ok");
+                await Application.Current.MainPage.DisplayAlert("AppLigaMX", $"Se generó un error al guardar el producto: {ex.Message}", "Ok");
             }
         }
 
@@ -193,12 +193,12 @@ namespace AppLigaMX.ViewModels
                 // Actualizamos el listado de productos
                 PartidosListViewModel.GetInstance().RefreshPartidos();
 
-                // Cerramos la vista actual
+                // Cerramos la vista actualS
                 await Application.Current.MainPage.Navigation.PopAsync();
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("AppProducts", $"Se generó un error al borrar el producto: {ex.Message}", "Ok");
+                await Application.Current.MainPage.DisplayAlert("AppLigaMX", $"Se generó un error al borrar el producto: {ex.Message}", "Ok");
             }
         }
 
@@ -265,8 +265,7 @@ namespace AppLigaMX.ViewModels
                 if (location != null)
                 {
                     //Se guarda la latitud y la longitud
-                    Latitud = location.Latitude;
-                    Longitud = location.Longitude;
+                    Application.Current.MainPage.Navigation.PushAsync(new MapPage(location, PartidoSelected));
                 }
                 else
                 {
@@ -288,7 +287,7 @@ namespace AppLigaMX.ViewModels
             }
             catch (Exception ex)
             {
-                // Unable to get location
+                await Application.Current.MainPage.DisplayAlert("AppLigaMX", $"Se generó un error al obtener ubicacion: {ex.Message}", "Ok");
             }
         }
 

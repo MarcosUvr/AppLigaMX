@@ -82,7 +82,7 @@ namespace ApiPartidos.Controllers
                 {
                     IsSuccess = true,
                     Message = "El partido se ha modificado exitosamente",
-                    Result = new PartidoModel().Update(model)
+                    Result = new PartidoModel().Put(model)
                 };
             }
             catch (Exception ex)

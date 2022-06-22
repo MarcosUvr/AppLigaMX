@@ -35,7 +35,9 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-                        
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -111,9 +113,7 @@
                         FontSize="15"
                         VerticalTextAlignment="Center"
                         HorizontalTextAlignment="Center"
-                        TextColor="White"/>
-
-                    
+                        TextColor="White"/>                    
 
                     <BoxView 
                         Grid.Column="0"
@@ -171,7 +171,7 @@
                         TextColor="White"/>
 
                     <Image
-                        Source="{Binding PartidoSelected.Picture, Converter={StaticResource ImageConverter}}"
+                        Source="{Binding PartidoPicture, Converter={StaticResource ImageConverter}}"
                         WidthRequest="10"
                         FlexLayout.Shrink="10"
                         Grid.Row="6"
