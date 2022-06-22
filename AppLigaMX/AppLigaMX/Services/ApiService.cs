@@ -121,7 +121,7 @@ namespace AppLigaMX.Services
                 return new ApiResponse
                 {
                     IsSuccess = false,
-                    Message = ex.Message
+                    Message = "Error" + ex.Message
                 };
             }
         }

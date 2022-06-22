@@ -14,7 +14,7 @@ namespace AppLigaMX.ViewModels
     {
         // VARIABLES GLOBALES 
         public readonly PartidosListViewModel ListViewModel;
-        static PartidosDetailViewModel instance = new PartidosDetailViewModel();
+        public readonly PartidosDetailViewModel instance;
 
         //COMANDOS
         private Command _CancelCommand;
@@ -100,7 +100,7 @@ namespace AppLigaMX.ViewModels
         {
             //Se carga el registro del partido si ya existe
             PartidoSelected = partidoSelected;
-            PartidoPicture = partidoSelected.Picture64;
+            PartidoPicture = partidoSelected.Picture;
             
         }
 
@@ -117,7 +117,7 @@ namespace AppLigaMX.ViewModels
         //MÉTODOS
         private async void SaveAction()
         {
-            GetLocationCommand.Execute(instance);
+            
             ApiResponse response;
             try
             {
@@ -127,17 +127,18 @@ namespace AppLigaMX.ViewModels
                 // Creamos el modelo con los datos de los controles
                 PartidoModel model = new PartidoModel
                 {
-                    ID = PartidoID,
+                    ID = PartidoSelected.ID,
                     Teams = PartidoSelected.Teams,
-                    Picture64 = PartidoPicture,
+                    Picture = PartidoSelected.Picture,
                     Hour = PartidoSelected.Hour,
-                    Latitud = instance.Latitud,
-                    Longitud = instance.Longitud
+                    //Latitud = latitud,
+                    //Longitud = longitud
                 };
 
                 if (model.ID == 0)
                 {
                     // Crear un nuevo producto
+                    
                     response = await new ApiService().PostDataAsync("Partido", model);
                 }
                 else
@@ -176,7 +177,7 @@ namespace AppLigaMX.ViewModels
                 // Creamos el modelo con los datos de los controles
                 PartidoModel model = new PartidoModel
                 {
-                    ID = PartidoID,
+                    ID = PartidoSelected.ID,
                 };
                 // Actualizar un producto existente
                 response = await new ApiService().DeleteDataAsync("Partido", model.ID);
@@ -229,7 +230,7 @@ namespace AppLigaMX.ViewModels
             if (file == null) return;
 
             //Se asigna la ruta de la fotografía
-            PartidoPicture = PartidoSelected.Picture64 = await new ImageService().ConvertImageFileToBase64(file.Path);
+            PartidoPicture = PartidoSelected.Picture = await new ImageService().ConvertImageFileToBase64(file.Path);
         }
 
         private async void SelectPictureAction()
@@ -253,7 +254,7 @@ namespace AppLigaMX.ViewModels
             if (file == null) return;
 
             //Se asigna la ruta de la fotografía
-            PartidoPicture = PartidoSelected.Picture64 = await new ImageService().ConvertImageFileToBase64(file.Path);
+            PartidoPicture = PartidoSelected.Picture = await new ImageService().ConvertImageFileToBase64(file.Path);
         }
 
         private async void GetLocationAction()

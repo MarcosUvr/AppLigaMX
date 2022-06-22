@@ -103,6 +103,17 @@
                         VerticalTextAlignment="Center"
                         HorizontalTextAlignment="Center"
                         Placeholder="0:00 AM/PM"/>
+                    <Label
+                        Text="Hora del partido :" 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        FontSize="15"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White"/>
+
+                    
 
                     <BoxView 
                         Grid.Column="0"
@@ -160,7 +171,7 @@
                         TextColor="White"/>
 
                     <Image
-                        Source="{Binding PartidoPicture, Converter={StaticResource ImageConverter}}"
+                        Source="{Binding PartidoSelected.Picture, Converter={StaticResource ImageConverter}}"
                         WidthRequest="10"
                         FlexLayout.Shrink="10"
                         Grid.Row="6"

@@ -177,7 +177,7 @@ namespace ApiPartidos.Models
             }
         }
 
-        public int Update(PartidoModel model)
+        public ApiResponse Update(PartidoModel model)
         {
             // Memoria
             /*foreach(ProductModel item in Products)
@@ -212,11 +212,21 @@ namespace ApiPartidos.Models
                         cmd.ExecuteNonQuery();
                     }
                 }
-                return model.ID;
+                return new ApiResponse
+                {
+                    IsSuccess = true,
+                    Message = "Los partidos fueron obtenidos correctamente",
+                    Result = model
+                };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                return new ApiResponse
+                {
+                    IsSuccess = false,
+                    Message = $"Se generó un error al obtener los partidos: {ex.Message}",
+                    Result = null
+                };
             }
         }
 
@@ -231,7 +241,7 @@ namespace ApiPartidos.Models
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "DELETE * FROM Partido WHERE IDPartido = @ID";
+                    string tsql = "DELETE FROM Partido WHERE IDPartido = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
