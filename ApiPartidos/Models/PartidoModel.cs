@@ -51,7 +51,9 @@ namespace ApiPartidos.Models
                                     ID = (int)reader["IDPartido"],
                                     Teams = reader["Teams"].ToString(),
                                     Picture = reader["Picture"].ToString(),
-                                    Hour = reader["Hour"].ToString()    
+                                    Hour = reader["Hour"].ToString(),
+                                    Latitud = (double)reader["Latitud"],
+                                    Longitud = (double)reader["Longitud"]
                                 });
                             }
                         }
@@ -101,7 +103,9 @@ namespace ApiPartidos.Models
                                     ID = int.Parse(reader["IDPartido"].ToString()),
                                     Teams = reader["Teams"].ToString(),
                                     Picture = reader["Picture"].ToString(),
-                                    Hour = reader["Hour"].ToString()
+                                    Hour = reader["Hour"].ToString(),
+                                    Latitud = (double)reader["Latitud"],
+                                    Longitud = (double)reader["Longitud"]
                                 };
                             }
                         }
@@ -127,15 +131,9 @@ namespace ApiPartidos.Models
 
         public ApiResponse Post(PartidoModel model)
         {
-            // Memoria
-            /*model.ID = Products.Count + 1;
-            Products.Add(model);
-            return model.ID;*/
-
-            // MySQL
+            // SQL
             try
             {
-                object newID;
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
@@ -151,12 +149,6 @@ namespace ApiPartidos.Models
                         cmd.Parameters.AddWithValue("@Longitud", model.Longitud);
 
                         cmd.ExecuteScalar();
-                        // cmd.ExecuteNonQuery();
-                        //if (newID != null && newID.ToString().Length > 0)
-                        //{
-                        //    cmd.Parameters.AddWithValue("@ID", newID);
-                        //    return int.Parse(newID.ToString());
-                        //}
                     }
                 }
                 return new ApiResponse
@@ -179,28 +171,13 @@ namespace ApiPartidos.Models
 
         public ApiResponse Put(PartidoModel model)
         {
-            // Memoria
-            /*foreach(ProductModel item in Products)
-            {
-                if (item.ID == model.ID)
-                {
-                    item.Price = model.Price;
-                    item.Picture = model.Picture;
-                    item.Description = model.Description;
-                    item.Designer = model.Designer;
-                    item.Category = model.Category;
-                    item.Model = model.Model;
-                    break;
-                }
-            }*/
-
-            // MySQL
+            // SQL
             try
             {
                 using (SqlConnection con = new SqlConnection(ConnectionString))
                 {
                     con.Open();
-                    string tsql = "UPDATE Partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour " +
+                    string tsql = "UPDATE Partido SET Teams = @Teams, Picture = @Picture, Hour = @Hour , Latitud = @Latitud, Longitud = @Longitud " +
                                   "WHERE IDPartido = @ID";
                     using (SqlCommand cmd = new SqlCommand(tsql, con))
                     {
@@ -209,6 +186,8 @@ namespace ApiPartidos.Models
                         cmd.Parameters.AddWithValue("@Picture", model.Picture);
                         cmd.Parameters.AddWithValue("@Hour", model.Hour);
                         cmd.Parameters.AddWithValue("@ID", model.ID);
+                        cmd.Parameters.AddWithValue("@Latitud", model.Latitud);
+                        cmd.Parameters.AddWithValue("@Longitud", model.Longitud);
                         cmd.ExecuteNonQuery();
                     }
                 }
